@@ -1,0 +1,45 @@
+<mat-toolbar>
+  <div>
+    <span>Firstname: </span><span>{{user.firstname}}, </span> 
+    <span>Lastname: </span><span>{{user.lastname}}, </span>  
+    <span>Role: </span><span>{{user.role}}</span>   
+  </div>
+  <div>
+  <ng-container *ngIf="isAdmin">
+    <button mat-flat-button color="primary"  (click)="goToAdmin()">Admin panel</button>
+    <button mat-flat-button color="primary" *ngIf="isAdmin" (click)="downloadCSV(reports)">Download CVS</button>
+  </ng-container>
+  <button mat-flat-button color="primary"  (click)="logOut()">Log out</button>
+  </div>
+</mat-toolbar>
+<table mat-table [dataSource]="reports" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="imageUrl">
+    <th mat-header-cell *matHeaderCellDef> IMAGE </th>
+    <td mat-cell *matCellDef="let element"><img class="user-img" [src]="element.imageUrl"></td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> NAME </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="usersResolved">
+    <th mat-header-cell *matHeaderCellDef> USERS RESOLVERS </th>
+    <td mat-cell *matCellDef="let element"> {{element.usersResolved}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="active">
+    <th mat-header-cell *matHeaderCellDef> ACTIVE </th>
+    <td mat-cell *matCellDef="let element"> {{element.active}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columns"></tr>
+  <tr mat-row *matRowDef="let row; columns: columns;" (click)="onReportClick(row)"></tr>
+</table>
+<br>

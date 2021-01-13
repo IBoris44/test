@@ -1,0 +1,14 @@
+<mat-toolbar>
+    <button mat-flat-button color="primary" routerLink="../">Back</button>
+</mat-toolbar>
+<div class="chart-wrapper">
+    <canvas baseChart 
+    [colors]="chartColors"
+    [datasets]="barChartData"
+    [labels]="barChartLabels"
+    [options]="barChartOptions"
+    [plugins]="barChartPlugins"
+    [legend]="barChartLegend"
+    [chartType]="barChartType">
+  </canvas>
+</div>
